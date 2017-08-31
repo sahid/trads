@@ -82,9 +82,17 @@ def main():
         trans_amount,
         trans_fees)
     if quote_price_to_sell:
-        print "Selling: %.2f" % quote_price_to_sell
-        
-
-
+        print "--"
+        for percent in (' 0', ' 1', ' 2', ' 3', ' 4', ' 5', ' 8', '10', '15',
+                        '20', '50', '80'):
+            price = (quote_price_to_sell +
+                     (quote_price_to_sell * (int(percent)/100.0)))
+            print "Sell %s%%: %.2f\t\t%.2f\t\t%.2f" % (
+                percent,
+                price,
+                price * trans_count,
+                price * trans_count - trans_amount
+                )
+                
 main()
         
