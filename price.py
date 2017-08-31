@@ -41,7 +41,7 @@ def _compute_for(op, trans_amount):
                 if op == 'buy':
                     trans_fees = (trans_amount * rfees) + trans_amount
                 else:
-                    trans_fees = (trans_amount * rfees) - trans_amount
+                    trans_fees = trans_amount - (trans_amount * rfees)
             break
     return trans_fees
 
@@ -66,7 +66,7 @@ def main():
             quote_price_to_sell += 0.01
             trans_fees_for_sell = compute_for_a_sell(
                 trans_count * quote_price_to_sell)
-            if (trans_fees_for_sell > trans_fees):
+            if (trans_fees_for_sell >= trans_fees):
                 break
     else:
         quote_price = args.sell
